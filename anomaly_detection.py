@@ -71,8 +71,6 @@ def eval_model(args):
     print(f"* trained model loaded from {model_path}")
 
     # 評価の実行
-    ax = sns.displot(clf.decision_scores_, kde=True)
-    plt.vlines(clf.threshold_, ymin=0, ymax=90, colors="red")
     df["class"] = clf.predict(df)
     # ここを実装する
     print("* evaluation done.")
