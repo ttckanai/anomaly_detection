@@ -86,7 +86,7 @@ def infer_model(args):
     data_path = os.path.abspath(args.data)
 
     # ここを実装する
-    df = pd.read_csv("C:/Users/koyama/Downloads/機械学習実践1/anomaly_detection/dataset/cancer.csv",encoding="shift-jis")
+    df = pd.read_csv(data_path)
     print(f"* inference data loaded from {data_path}")
 
 
@@ -114,8 +114,6 @@ def infer_model(args):
     out_path = _create_folder(args.out)
 
     # ここを実装する
-    plt.show()
-    plt.savefig("hoge.png")
     print(f"* result save to {out_path}")
 
     return
