@@ -12,6 +12,8 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 from pyod.models.ecod import ECOD
 
+from sklearn.datasets import load_breast_cancer
+
 def _create_folder(out):
     """指定されたフォルダが無ければ作成し、フォルダの絶対パスを返す関数"""
     abs_path = os.path.abspath(out)
@@ -83,21 +85,33 @@ def infer_model(args):
 
     # 推論用データの読み込み
     data_path = os.path.abspath(args.data)
+
     # ここを実装する
+    df = pd.read_csv("C:/Users/koyama/Downloads/機械学習実践1/anomaly_detection/dataset/cancer.csv",encoding="shift-jis")
     print(f"* inference data loaded from {data_path}")
+
 
     # 学習済みモデルの読み込み
     model_path = os.path.abspath(args.model)
+
     # ここを実装する
+    with open(model_path, "rb") as f:
+        clf = pickle.load(f)
     print(f"* trained model loaded from {model_path}")
 
     # 推論の実行
+
     # ここを実装する
+    label = clf.predict(df)
+    label
     print("* inference done.")
 
     # 推論結果の保存
     out_path = _create_folder(args.out)
+
     # ここを実装する
+    plt.show()
+    plt.savefig("hoge.png")
     print(f"* result save to {out_path}")
 
     return
