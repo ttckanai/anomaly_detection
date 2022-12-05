@@ -12,6 +12,7 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 from pyod.models.ecod import ECOD
 
+
 def _create_folder(out):
     """指定されたフォルダが無ければ作成し、フォルダの絶対パスを返す関数"""
     abs_path = os.path.abspath(out)
@@ -92,20 +93,35 @@ def infer_model(args):
 
     # 推論用データの読み込み
     data_path = os.path.abspath(args.data)
+
     # ここを実装する
+    df = pd.read_csv(data_path)
     print(f"* inference data loaded from {data_path}")
+
 
     # 学習済みモデルの読み込み
     model_path = os.path.abspath(args.model)
+
     # ここを実装する
+    with open(model_path, "rb") as f:
+        clf = pickle.load(f)
     print(f"* trained model loaded from {model_path}")
 
     # 推論の実行
+
     # ここを実装する
+
+    out_path = _create_folder(args.out)
+    result_path = os.path.join(out_path,"result.csv")
+    result = pd.Series(clf.predict(df), index=df.index, name="class")
+    result.to_csv(result_path,index=None)
+    
+
     print("* inference done.")
 
     # 推論結果の保存
     out_path = _create_folder(args.out)
+
     # ここを実装する
     print(f"* result save to {out_path}")
 
