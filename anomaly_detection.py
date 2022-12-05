@@ -12,7 +12,6 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 from pyod.models.ecod import ECOD
 
-from sklearn.datasets import load_breast_cancer
 
 def _create_folder(out):
     """指定されたフォルダが無ければ作成し、フォルダの絶対パスを返す関数"""
