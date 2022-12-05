@@ -102,8 +102,13 @@ def infer_model(args):
     # 推論の実行
 
     # ここを実装する
-    label = clf.predict(df)
-    label
+
+    out_path = _create_folder(args.out)
+    result_path = os.path.join(out_path,"result.csv")
+    result = pd.Series(clf.predict(df), index=df.index, name="class")
+    result.to_csv(result_path,index=None)
+    
+
     print("* inference done.")
 
     # 推論結果の保存
